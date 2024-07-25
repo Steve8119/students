@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': 'new3',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',  # Or your MySQL server IP address
+        'HOST': 'student-auth-project.onrender.com',  # Or your MySQL server IP address
         'PORT': '3306',       # MySQL default port
     }
 }
