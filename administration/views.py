@@ -8,7 +8,7 @@ def dashboard(request):
         form = MessageForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('administration/dashboard')
     else:
         form = MessageForm()
     messages = Message.objects.all()
