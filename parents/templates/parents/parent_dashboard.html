@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parent Dashboard</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+            color: #333333;
+        }
+        .info {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .chat-icon {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .chat-icon img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Parent Dashboard</h2>
+        <div class="info">
+            <p><strong>Full Name:</strong> {{ student.full_name }}</p>
+            <p><strong>Admission Number:</strong> {{ student.admission_number }}</p>
+            <p><strong>Course:</strong> {{ student.course }}</p>
+            <p><strong>Year of Study:</strong> {{ student.year_of_study }}</p>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+        </div>
+        <div class="buttons">
+            <a href="{% url 'student_information' student.id %}" class="button">Student Information</a>
+            <div class="chat-icon">
+                <a href="{% url 'parent_messages' student.id %}">
+                    <img src="{% static 'chat-icon.png' %}" alt="Chat Icon">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

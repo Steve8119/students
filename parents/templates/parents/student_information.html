@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 700px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .info, .units, .fees {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .info p, .units ul, .fees p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .info p strong, .units ul li strong, .fees p strong {
+            color: #333;
+        }
+        .units h3, .fees h3 {
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 1.4rem;
+        }
+        .units ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .units ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .units ul li:last-child {
+            border-bottom: none;
+        }
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 12px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Information</h2>
+        <div class="info">
+            <p><strong>Full Name:</strong> {{ student.full_name }}</p>
+            <p><strong>Admission Number:</strong> {{ student.admission_number }}</p>
+            <p><strong>Course:</strong> {{ student.course }}</p>
+            <p><strong>Year of Study:</strong> {{ student.year_of_study }}</p>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+        </div>
+        <div class="units">
+            <h3>Units and Results</h3>
+            {% if units %}
+                <ul>
+                    {% for unit in units %}
+                        <li><strong>{{ unit.unit_name }}:</strong> {{ unit.result }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No units found.</p>
+            {% endif %}
+        </div>
+        <div class="fees">
+            <h3>School Fees</h3>
+            {% if school_fees %}
+                <p><strong>Total Amount:</strong> {{ school_fees.total_amount }}</p>
+                <p><strong>Amount Paid:</strong> {{ school_fees.amount_paid }}</p>
+                <p><strong>Remaining Amount:</strong> {{ school_fees.remaining_amount }}</p>
+            {% else %}
+                <p>No school fees information found.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'parent_dashboard' %}" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

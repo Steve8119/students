@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Aligns items to the top */
+            min-height: 100vh; /* Full viewport height */
+            background-image: url('https://images.unsplash.com/photo-1581091870622-87e2859e5057?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3NDB8MHwxfGFsbHwxfHx8fHx8fHwxNjEyMDg4MzI3&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            overflow-y: auto; /* Allows scrolling if needed */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            margin-top: 20px; /* Pushes container down */
+        }
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+        th {
+            background-color: #e8f5e9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button {
+            display: block;
+            width: 48%;
+            text-align: center;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .logout {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .logout:hover {
+            background-color: #e60000;
+        }
+        .profile-image {
+            width: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 2px solid #4CAF50;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+            padding: 15px;
+            text-align: left;
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .card p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .progress {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 20px;
+            width: 75%; /* Change this to represent actual progress */
+            background-color: #4CAF50;
+            transition: width 0.5s;
+        }
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://images.unsplash.com/photo-1593001731316-e6ec5e97d5c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3NDB8MHwxfGFsbHwxfHx8fHx8fHwxNjEyMDg4MzI3&ixlib=rb-1.2.1&q=80&w=1080" alt="Profile Image" class="profile-image">
+        <h2>Welcome to the Student Dashboard</h2>
+        
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td>{{ request.user.full_name }}</td>
+            </tr>
+            <tr>
+                <td>username</td>
+                <td>{{ request.user.username }}</td>
+            </tr>
+            <tr>
+                <td>Admission Number</td>
+                <td>{{ request.user.admission_number }}</td>
+            </tr>
+            <tr>
+                <td>Course</td>
+                <td>{{ request.user.course }}</td>
+            </tr>
+            <tr>
+                <td>Year of Study</td>
+                <td>{{ request.user.year_of_study }}</td>
+            </tr>
+        </table>
+
+        <div class="button-container">
+            <a href="{% url 'view_units' %}" class="button"><i class="fas fa-book icon"></i>View Units</a>
+            <a href="{% url 'school_fees_status' %}" class="button"><i class="fas fa-money-bill-wave icon"></i>View School Fees Status</a>
+        </div>
+        
+        <div class="card">
+            <h3>Upcoming Assignments <i class="fas fa-calendar-alt"></i></h3>
+            <p>Math Assignment - Due: July 20</p>
+            <p>Science Project - Due: July 25</p>
+        </div>
+        
+        <div class="card">
+            <h3>Announcements <i class="fas fa-bullhorn"></i></h3>
+            <p>Classes resume on July 15.</p>
+            <p>Parent-Teacher meeting on July 22.</p>
+        </div>
+
+        <div class="card">
+            <h3>Extracurricular Activities <i class="fas fa-users"></i></h3>
+            <p>Join the Debate Club every Friday!</p>
+            <p>Volunteer Opportunities in the community.</p>
+        </div>
+        
+        <div class="card">
+            <h3>Progress Overview <i class="fas fa-chart-line"></i></h3>
+            <div class="progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>75% of subjects completed</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Resources <i class="fas fa-folder-open"></i></h3>
+            <p><a href="" style="color: #4CAF50;">Access Library Resources</a></p>
+            <p><a href="" style="color: #4CAF50;">Join the Student Forum</a></p>
+        </div>
+
+        <a href="{% url 'log_out' %}" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        
+        <footer>
+            <p>&copy; 2024 Student Dashboard</p>
+        </footer>
+    </div>
+</body>
+</html>

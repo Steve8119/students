@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Fees Status</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto; /* Allows scrolling */
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+        th {
+            background-color: #e8f5e9;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .back-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+        .card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+            padding: 15px;
+            text-align: left;
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .card p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .icon {
+            margin-right: 8px;
+        }
+        .progress {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 20px;
+            width: 50%; /* Example progress */
+            background-color: #4CAF50;
+            transition: width 0.5s;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>School Fees Status</h2>
+        <table>
+            <tr>
+                <th>Total Amount</th>
+                <th>Amount Paid</th>
+                <th>Remaining Amount</th>
+            </tr>
+            {% for fee in fees %}
+            <tr>
+                <td>{{ fee.total_amount }}</td>
+                <td>{{ fee.amount_paid }}</td>
+                <td>{{ fee.remaining_amount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="card">
+            <h3><i class="fas fa-info-circle icon"></i>Important Information</h3>
+            <p>Ensure your fees are paid on time to avoid any penalties or restrictions.</p>
+            <p>Contact the bursar's office if you have any questions regarding your fees.</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-calendar-alt icon"></i>Payment Deadlines</h3>
+            <p>Next Payment Due: <strong>July 31</strong></p>
+            <p>Final Payment Deadline: <strong>December 15</strong></p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-chart-line icon"></i>Payment Progress</h3>
+            <div class="progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>50% of fees paid</p>
+            </div>
+        </div>
+
+        <a href="{% url 'dashboard' %}" class="back-button">Back to Dashboard</a>
+        
+        <footer class="footer">
+            <p>&copy; 2024 School Fees Management System</p>
+        </footer>
+    </div>
+</body>
+</html>
