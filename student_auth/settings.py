@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'b)x+rnr1i&zx!!d+feq2dpa=izww!u=!&9_3gy#cr(#c+=g6%i')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = True
+
 
 ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
 
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'student_auth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DEBUG = False
+
 ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
 
 DATABASES = {
