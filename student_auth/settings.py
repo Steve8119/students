@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -23,11 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'b)x+rnr1i&zx!!d+feq2dpa=izww!u=!&9_3gy#cr(#c+=g6%i')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
-
 
 # Application definition
 
@@ -74,24 +71,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'student_auth.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-
-ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new3',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # or the IP address of your MySQL server
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME', 'new3'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', 'localhost'),  # Update this with your remote DB host
+        'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -111,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -124,7 +115,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
