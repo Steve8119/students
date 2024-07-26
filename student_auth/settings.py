@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'b)x+rnr1i&zx!!d+feq2dpa=izww!u=!&9_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["student-auth-project.onrender.com"]
+ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
 
 
 # Application definition
@@ -77,14 +77,17 @@ WSGI_APPLICATION = 'student_auth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DEBUG = False
+ALLOWED_HOSTS = ["students-d0qg.onrender.com"]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'new3'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '3306'),
+        'NAME': 'new3',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # or the IP address of your MySQL server
+        'PORT': '3306',
     }
 }
 
